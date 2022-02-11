@@ -24,3 +24,9 @@ jobs:
 
       - name: Run Test
         run: npm test
+
+      - name: Install dépendance and build react interface
+        run: |
+          cd client
+          npm install
+          npm run build

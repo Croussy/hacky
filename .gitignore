@@ -3,4 +3,3 @@ node_modules
 .idea
 config/.env
 client/node_modules
-public/dist

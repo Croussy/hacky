@@ -19,14 +19,14 @@ jobs:
         with:
           node-version: "16.13.0"
 
-      - name: Install dépendance
+      - name: Install dépendance for node.js
         run: npm install
-
-      - name: Run Test
-        run: npm test
 
       - name: Install dépendance and build react interface
         run: |
           cd client
           npm install
           npm run build
+
+      - name: Run Test
+        run: npm test

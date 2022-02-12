@@ -1,5 +1,4 @@
-var assert = require('assert');
-
+const assert = require('assert');
 const app = require('../server/app')
 const supertest = require('supertest')
 const request = supertest(app)

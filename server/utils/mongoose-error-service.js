@@ -24,7 +24,5 @@ module.exports.computeErrorsForFront = (mongooseError) => {
             toReturn[key] = {type: error.kind, message: error.properties.message}
         })
     }
-    console.log("clément", "[toReturn]", toReturn);
-
     return toReturn
 }

@@ -3,34 +3,69 @@ const app = require('../server/app')
 const supertest = require('supertest')
 const request = supertest(app)
 const {MONGOOSE_ERROR} = require('../server/utils/mongoose-error-service')
+const {PLAYER_ERROR_VALIDATION_MESSAGE, Player} = require('../server/models/Player.model')
+const {dbConnect, dbClose} = require("../server/config/db-manager");
+const mongoose = require("mongoose");
 
 describe("API Player create", () => {
-    it("Should return a response 200", async () => {
-        const res = await request.post('/api/player/').send({
-            name: "test unit"
+    before((done) => {
+        dbConnect(process.env.DATABASE_TEST).then(() => {
+            mongoose.connection.collections.players.drop(() => {
+                const player = new Player({name: "player1"})
+                player.save().then(() => {
+                    done();
+                })
+            })
         })
-        const data = res.body
-        assert.equal(res.status, 200);
-        assert.equal(data.name, "test unit");
+    })
+    after(() => {
+        dbClose()
+    })
+    it("Should return a response 200", (done) => {
+        request.post('/api/player/').send({name: "test unit"})
+            .expect(200)
+            .end((err, res) => {
+                if (err) throw err
+                const data = res.body
+                assert.equal(data.name, "test unit");
+                done()
+            })
+    })
+    it("Should return a response 400 and missing name", (done) => {
+        request.post('/api/player/').send({})
+            .expect(400)
+            .end((err, res) => {
+                if (err) throw err
+                const data = res.body
+                assert.equal(data.message.name.type, MONGOOSE_ERROR.TYPE.REQUIRED);
+                assert.equal(data.message.name.message, PLAYER_ERROR_VALIDATION_MESSAGE.MISSING_NAME);
+                done()
+            } )
     })
 })
-describe("API Player missing name", () => {
-    it("Should return a response 200", async () => {
-        const res = await request.post('/api/player/').send({})
-        const data = res.body
-        assert.equal(res.status, 400);
-        assert.equal(data.message.name.type, MONGOOSE_ERROR.TYPE.REQUIRED);
-        assert.equal(data.message.name.message, "Nom du joueur manquant");
+let playerId = ""
+describe("API : Get player", () => {
+    before((done) => {
+        dbConnect(process.env.DATABASE_TEST).then(() => {
+            mongoose.connection.collections.players.drop(() => {
+                const player = new Player({name: "player 2"})
+                player.save().then((data) => {
+                    playerId = data._id
+                    done();
+                })
+            })
+        })
     })
-})
-describe("API Player already exist", () => {
-    it("Should return a response 200", async () => {
-        await request.post('/api/player/').send({name: "Player exist"})
-        const res = await request.post('/api/player/').send({name: "Player exist"})
-        const data = res.body
-
-        assert.equal(res.status, 400);
-        assert.equal(data.message.type, MONGOOSE_ERROR.TYPE.UNIQUE);
-        assert.equal(data.message.message, MONGOOSE_ERROR.MESSAGE.MUST_BE_UNIQUE);
+    after(() => {
+        dbClose()
+    })
+    it("Should return a response 200", (done) => {
+        request.get('/api/player/' + playerId)
+            .expect(200)
+            .end((err, res) => {
+                if (err) throw err
+                assert.equal(res.body.name, "player 2");
+                done()
+            })
     })
 })

@@ -58,14 +58,12 @@ describe("API Game create", () => {
             })
     })
 })
-let gameid = ""
 describe("API : Get game", () => {
     before((done) => {
         dbConnect(process.env.DATABASE_TEST).then(() => {
             mongoose.connection.collections.games.drop(() => {
                 const game = new Game({name: "hacky 2"})
-                game.save().then((data) => {
-                    gameid = data._id
+                game.save().then(() => {
                     done();
                 })
             })
@@ -75,7 +73,7 @@ describe("API : Get game", () => {
         dbClose()
     })
     it("Should return a response 200", (done) => {
-        request.get('/api/game/' + gameid)
+        request.get('/api/game/hacky 2')
             .expect(200)
             .end((err, res) => {
                 if (err) throw err

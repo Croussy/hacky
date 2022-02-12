@@ -15,20 +15,20 @@ module.exports.addGame = (req, res) => {
         }
     })
 }
-module.exports.getGameById = (req, res) => {
-    const id = req.params.id
-    if (!id) {
+module.exports.getGameByName = (req, res) => {
+    const name = req.params.name
+    if (!name) {
         res.status(400).send({
-            message: 'No id sent'
+            message: 'No name sent'
         })
         return
     }
 
-    Game.findById(id).then(game => {
-        res.status(200).send(game)
+    Game.find({name: name}).then(game => {
+        res.status(200).send(game[0])
     }).catch(() => {
         res.status(500).send({
-            message: "Error retrieving find game by id"
+            message: "Error retrieving find game by name"
         })
     })
 }

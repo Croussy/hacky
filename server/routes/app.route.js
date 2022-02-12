@@ -1,10 +1,7 @@
-const path = require("path");
 const router = require('express').Router()
+const {getHome} = require('../controllers/app.controller')
 
-router.get("/", (req, res) => {
-    console.log("clément", "[__dirname]", __dirname);
-
-    res.sendFile(path.join(__dirname + '../public/dist/index.html'));
-})
+router.route('/')
+    .get(getHome)
 
 module.exports = router;

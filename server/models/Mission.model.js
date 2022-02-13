@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose')
+const {Schema, model, ObjectId} = require('mongoose')
 
 const MISSION_ERROR_VALIDATION_MESSAGE = {
     MISSING_NAME : "Nom de la mission manquant",
@@ -8,6 +8,7 @@ const MISSION_ERROR_VALIDATION_MESSAGE = {
 }
 const MissionSchema = new Schema({
     name: {type: String, required: [true, MISSION_ERROR_VALIDATION_MESSAGE.MISSING_NAME], unique: true},
+    gameId: {type: ObjectId, required: [true, MISSION_ERROR_VALIDATION_MESSAGE.MISSING_NAME]},
     description: {type: String, required: [true, MISSION_ERROR_VALIDATION_MESSAGE.MISSING_DESCRIPTION]},
     specificData: {}
 })

@@ -43,6 +43,16 @@ module.exports.getMissionById = (req, res) => {
         })
     })
 }
+module.exports.getMissionsByGameId = (req, res) => {
+    const id = req.params.gameId
+    Mission.find({gameId: id}).then(mission => {
+        res.status(200).send(mission)
+    }).catch(() => {
+        res.status(500).send({
+            message: "Error retrieving find missions by gameId"
+        })
+    })
+}
 
 const checkIfGameIdExist = async (gameId) => {
     return await Game.findById(gameId).then((game) => {

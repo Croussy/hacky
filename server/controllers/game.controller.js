@@ -1,11 +1,11 @@
-const { Game } = require('../models/Game.model')
-const { computeErrorsForFront } = require('../utils/mongoose-error-service')
+const {Game} = require('../models/Game.model')
+const {computeErrorsForFront} = require('../utils/mongoose-error-service')
 
 module.exports.addGame = (req, res) => {
     const data = req.body
     const game = new Game(data)
-    game.save( (err, response) => {
-        if(err) {
+    game.save((err, response) => {
+        if (err) {
             res.status(400).send({
                 message: computeErrorsForFront(err)
             })

@@ -10,6 +10,7 @@ export const getMissions = (gameId) => {
             url: `${import.meta.env.VITE_REACT_APP_API_URL}/api/mission/gameMissions/${gameId}`,
             withCredentials: true
         }).then((res) => {
+
             dispatch({type: GET_MISSIONS, payload: res.data})
         }).catch((err) => console.log(err))
     }

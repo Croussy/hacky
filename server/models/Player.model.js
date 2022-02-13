@@ -1,20 +1,13 @@
-const {Schema, model, ObjectId} = require('mongoose')
+const {Schema, model} = require('mongoose')
 
 const PLAYER_ERROR_VALIDATION_MESSAGE = {
-    MISSING_NAME : "Nom du joueur manquant"
+    MISSING_NAME: "Nom du joueur manquant",
+    GAME_ID_MISSING: "GameId manquant"
 }
 
 const PlayerSchema = new Schema({
     name: {type: String, required: [true, PLAYER_ERROR_VALIDATION_MESSAGE.MISSING_NAME], unique: true},
-    score: [
-        {
-            gameId: ObjectId,
-            globalScore: Number,
-            timeStart: Date,
-            timeEnd: Date,
-            missionsAchieved: [ObjectId]
-        }
-    ]
+    scores: []
 })
 
 const Player = model('Player', PlayerSchema)

@@ -10,6 +10,7 @@ import {getMissions} from "../../actions/missions.action";
 const GameController = () => {
     const dispatch = useDispatch()
     const game = useSelector(state => state.gameReducer)
+    const player = useSelector(state => state.playerReducer)
     useEffect(() => {
         dispatch(getInfoGame())
     }, [])
@@ -20,9 +21,9 @@ const GameController = () => {
     }, [game])
     return (
         <div className={"game-controller"}>
-            <GameInformation/>
-            <MissionContainer/>
-            <MissionsInformations/>
+            <GameInformation game={game} player={player}/>
+            <MissionContainer game={game} player={player}/>
+            <MissionsInformations player={player}/>
         </div>
     );
 };

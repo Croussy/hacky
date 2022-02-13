@@ -1,9 +1,8 @@
 const router = require('express').Router()
-const {createPlayer, getPlayerById} = require('../controllers/player.controller')
-
+const {createOrGetPlayer, getPlayerById} = require('../controllers/player.controller')
 
 router.route('/')
-    .post(createPlayer)
+    .post(createOrGetPlayer)
 router.route('/:id')
     .get(getPlayerById)
 

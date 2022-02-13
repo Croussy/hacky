@@ -1,6 +1,6 @@
 import {GET_GAME_INFO} from "../actions/game.action";
 
-const initialState = {}
+const initialState = {name: ''}
 
 export default (state = initialState, action) => {
     switch (action.type) {

@@ -1,0 +1,42 @@
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+}
+.welcome-container .title {
+    align-self: center;
+    font-size: 2rem;
+}
+.welcome-container .description {
+    font-size: 1rem;
+    margin-top: 30px;
+}
+.welcome-container .pseudo-form {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.welcome-container .pseudo-label {
+    font-size: 1.3rem;
+}
+.welcome-container .pseudo-label .pseudo-resume-game {
+    color: grey;
+    font-size: 0.8rem;
+    text-align: center;
+}
+.welcome-container .pseudo-input {
+    margin-top: 15px;
+    width: 20%;
+    padding: 6px 12px;
+    border: 1px solid #cfcfcf;
+}
+.welcome-container .pseudo-submit {
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 10px 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: #6565dd;
+    color: white;
+}

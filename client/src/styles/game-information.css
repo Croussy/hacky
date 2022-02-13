@@ -1,0 +1,30 @@
+.game-information {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+}
+.game-information .logo {
+    align-self: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+.game-information .restart-game-button {
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.game-information-block {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 20px;
+    background-color: #2d1837;
+    align-items: center;
+    color: white;
+    margin: 5px;
+}
+.game-information-block .game-information-block-label {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+

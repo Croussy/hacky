@@ -1,7 +1,5 @@
-const app = require('./app')
-const dotenv = require('dotenv')
-const {dbConnect} = require('./config/db-manager')
-dotenv.config({path: './config/.env'});
+const app = require('./server/app')
+const {dbConnect} = require('./server/config/db-manager')
 
 
 const server = app.listen(process.env.PORT, () => {

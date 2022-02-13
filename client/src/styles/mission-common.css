@@ -1,0 +1,30 @@
+.mission-intro {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.mission-intro-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mission-intro-content .mission-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.mission-intro-content .mission-description {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.mission-intro-content .button-next {
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 10px 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: #6565dd;
+    color: white;
+    font-size: 1rem;
+}

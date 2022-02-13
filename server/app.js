@@ -23,6 +23,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, '../public/dist')));
+app.use('/img', express.static(path.join(__dirname, '../public/img')));
 
 mountRoutes(app)
 

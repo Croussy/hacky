@@ -34,7 +34,7 @@ module.exports.createOrGetPlayer = async (req, res) => {
         scores: [
             {
                 gameId: data.gameId,
-                step: 1,
+                step: 2,
                 globalScore: 0,
                 missionsAchieved: []
             }

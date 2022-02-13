@@ -2,7 +2,5 @@
     height: 100vh;
     display: flex;
     align-items: center;
-}
-.game-controller .mission-container {
-    width: 80%;
+    justify-content: space-around;
 }

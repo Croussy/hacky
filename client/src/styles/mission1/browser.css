@@ -1,0 +1,27 @@
+.mission1-browser {
+    width: 60%;
+    height: 60%;
+    min-height: 500px;
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #9F7BFF;
+    border-right: 1px solid #9F7BFF;
+    border-bottom: 1px solid #9F7BFF;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.mission1-browser .header {
+    height: 20px;
+    min-height: 20px;
+    background-color: #9F7BFF;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.mission1-browser .navigation-bar {
+    height: 25px;
+    padding: 3px 10px;
+    border-bottom: 1px solid #9F7BFF;
+    display: flex;
+    align-items: center;
+}

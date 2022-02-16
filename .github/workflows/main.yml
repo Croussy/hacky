@@ -23,8 +23,11 @@ jobs:
         env:
           SECRET_TEST: ${{ secrets.TEST_SECRET }}
         run: |
-          echo ${{ secrets.TEST_SECRET }}
-          echo ${{ env.SECRET_TEST }}
+          cd ./server/config
+          touch .env
+          echo ${{ secrets.TEST_SECRET }} >> .env
+          echo ${{ env.SECRET_TEST }} >> .env
+          cat .env
 
       - name: Install dépendance for node.js
         run: npm install

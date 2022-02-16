@@ -19,15 +19,13 @@ jobs:
         with:
           node-version: "16.13.0"
 
-      - name: Add .env file
-        run: |
-          cd ./server/config/
-          touch .env
-          echo PORT=5000 >> .env
-          echo NODE_ENV="development" >>.env
-          echo DATABASE_TEST=${{ secrets.MONGO_TEST_DATABASE }} >> .env
-          ls -al .
-          cat .env
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_PORT: 5000
+          envkey_DATABASE_TEST: ${{ secrets.MONGO_TEST_DATABASE }}
+          directory: ./server/config/
+          file_name: .env
 
       - name: Install dépendance for node.js
         run: npm install

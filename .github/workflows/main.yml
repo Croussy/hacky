@@ -25,14 +25,14 @@ jobs:
           touch .env
           echo PORT=5000 >> .env
           echo DATABASE_TEST=${{ secrets.MONGO_TEST_DATABASE }} >> .env
-          ls .
+          ls -al .
 
       - name: Install dépendance for node.js
         run: npm install
 
       - name: Install dépendance and build react interface
         run: |
-          ls ./server/config
+          ls -al ./server/config
           cd client
           npm install
           npm run build

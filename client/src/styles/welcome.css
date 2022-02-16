@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     margin: 50px;
-    width: 100%;
+    flex-grow: 1;
 }
 .welcome-container .title {
     align-self: center;
@@ -11,6 +11,7 @@
 .welcome-container .description {
     font-size: 1rem;
     margin-top: 30px;
+    text-align: center;
 }
 .welcome-container .pseudo-form {
     margin-top: 50px;

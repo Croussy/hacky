@@ -20,6 +20,8 @@
 .social-network-page .navbar .social-network-name {
     margin-left: 15px;
     font-size: 1.2rem;
+    color: #385898;
+    font-weight: 600;
 }
 
 .social-network-page .account-page-container {

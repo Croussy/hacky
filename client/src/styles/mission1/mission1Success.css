@@ -1,0 +1,14 @@
+.mission1-success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mission1-success-container .title {
+    font-size: 2rem;
+    color: green;
+    font-weight: 500;
+}
+.mission1-success-container .subtitle {
+    font-size: 1.4rem;
+    margin-top: 10px;
+}

@@ -24,6 +24,7 @@ jobs:
           touch ./server/config/.env
           echo PORT=5000 >> ./server/config/.env
           echo DATABASE_TEST=${{ secrets.MONGO_TEST_DATABASE }} >> ./server/config/.env
+          ls ./server/config
 
       - name: Install dépendance for node.js
         run: npm install

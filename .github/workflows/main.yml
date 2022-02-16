@@ -21,8 +21,8 @@ jobs:
 
       - name: Test github secret
         env:
-          SECRET_TEST: ${{ secrets.SuperSecret }}
-        run: echo "TEST"
+          SECRET_TEST: ${{ secrets.TEST_SECRET }}
+        run: echo "$SECRET_TEST"
 
       - name: Install dépendance for node.js
         run: npm install

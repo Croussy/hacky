@@ -20,9 +20,12 @@ jobs:
           node-version: "16.13.0"
 
       - name: Test github secret
+      - shell: bash
         env:
           SECRET_TEST: ${{ secrets.TEST_SECRET }}
-        run: echo ${{ secrets.TEST_SECRET }}
+        run: |
+          echo ${{ secrets.TEST_SECRET }}
+          echo ${{ env.SECRET_TEST }}
 
       - name: Install dépendance for node.js
         run: npm install

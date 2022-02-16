@@ -20,7 +20,6 @@ jobs:
           node-version: "16.13.0"
 
       - name: Test github secret
-      - shell: bash
         env:
           SECRET_TEST: ${{ secrets.TEST_SECRET }}
         run: |

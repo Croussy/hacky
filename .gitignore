@@ -1,5 +1,5 @@
 yarn.lock
 node_modules
 .idea
-config/.env
+server/config/.env
 client/node_modules

@@ -1,0 +1,16 @@
+.game-controller {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.next-button {
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 10px 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: #6565dd;
+    color: white;
+}

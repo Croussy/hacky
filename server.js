@@ -1,9 +1,10 @@
 const app = require('./server/app')
 const {dbConnect} = require('./server/config/db-manager')
 
+const port = process.env.PORT || 5000
 
-const server = app.listen(process.env.PORT, () => {
-    console.log(`Listening on port ${process.env.PORT}`)
+const server = app.listen(port, () => {
+    console.log(`Listening on port ${port}`)
     dbConnect(process.env.DATABASE)
 })
 

@@ -5,24 +5,29 @@ const request = supertest(app)
 const {MONGOOSE_ERROR} = require('../server/utils/mongoose-error-service')
 const {Game} = require('../server/models/Game.model')
 const {dbConnect, dbClose} = require("../server/config/db-manager");
-const mongoose = require("mongoose");
 const {Mission, MISSION_ERROR_VALIDATION_MESSAGE} = require("../server/models/Mission.model");
 
 let gameId = ''
 describe("API Mission create", () => {
-    before((done) => {
-        dbConnect(process.env.DATABASE_TEST).then(() => {
-            mongoose.connection.collections.missions.drop(() => {
-                const mission = new Mission({name: "mission2", "description": "This a description"})
-                mission.save().then(() => {
-                    const game = new Game({name: "hacky"})
-                    game.save().then((res) => {
-                        gameId = res._id
-                        done()
-                    })
-                })
-            })
+    before( 'Mission create : connect', () => {
+        return dbConnect(process.env.DATABASE_TEST)
+    })
+    before("Mission create : Remove Game collection", () => {
+        return Game.deleteMany({})
+    })
+    before("Mission create : Remove Mission collection", () => {
+        return Mission.deleteMany({})
+    })
+    before("Mission create : Create Game mock", (done) => {
+        const new_game = new Game({name: "hacky"})
+        new_game.save().then((game) => {
+            gameId = game._id
+            done()
         })
+    })
+    before("Mission create : Create Mission mock", () => {
+        const new_mission = new Mission({name: "missionAlreadyExist", "description": "This a description", "gameId": gameId})
+        return new_mission.save()
     })
     after(() => {
         dbClose()
@@ -74,19 +79,43 @@ describe("API Mission create", () => {
                 done()
             })
     })
+    it("Should return a response 400 and mission already exist", (done) => {
+        request.post('/api/mission/')
+            .send({name: "missionAlreadyExist", description: "hacky description", gameId})
+            .expect(400)
+            .end((err, res) => {
+                if (err) throw err
+                const data = res.body
+                assert.equal(data.message.type, MONGOOSE_ERROR.TYPE.UNIQUE);
+                assert.equal(data.message.message, MONGOOSE_ERROR.MESSAGE.MUST_BE_UNIQUE);
+                done()
+            })
+    })
 })
 
 let missionId = ""
 describe("API : Get mission", () => {
-    before((done) => {
-        dbConnect(process.env.DATABASE_TEST).then(() => {
-            mongoose.connection.collections.missions.drop(() => {
-                const mission = new Mission({name: "mission2", "description": "This a description"})
-                mission.save().then(res => {
-                    missionId = res._id
-                    done()
-                })
-            })
+    before( 'Get mission : connect', () => {
+        return dbConnect(process.env.DATABASE_TEST)
+    })
+    before("Get mission : Remove Game collection", () => {
+        return Game.deleteMany({})
+    })
+    before("Get mission : Remove Mission collection", () => {
+        return Mission.deleteMany({})
+    })
+    before("Get mission : Create Game mock", (done) => {
+        const new_game = new Game({name: "hacky"})
+        new_game.save().then((game) => {
+            gameId = game._id
+            done()
+        })
+    })
+    before("Get mission : Create Mission mock", (done) => {
+        const new_mission = new Mission({name: "missionAlreadyExist", "description": "This a description", "gameId": gameId})
+        new_mission.save().then((mission) => {
+            missionId = mission._id
+            done()
         })
     })
     after(() => {
@@ -97,7 +126,7 @@ describe("API : Get mission", () => {
             .expect(200)
             .end((err, res) => {
                 if (err) throw err
-                assert.equal(res.body.name, "mission2");
+                assert.equal(res.body.name, "missionAlreadyExist");
                 done()
             })
     })

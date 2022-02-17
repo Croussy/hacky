@@ -76,7 +76,9 @@ describe("API Player create", () => {
                 if (err) throw err
                 const data = res.body
                 assert.equal(data.name, 'playerAlreadyExist');
-                assert.equal(data._id, playedAlreadyExistId);
+                console.log("clément", "[data]", data);
+
+                assert.equal(data.id, playedAlreadyExistId);
                 done()
             })
     })

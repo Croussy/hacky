@@ -33,12 +33,3 @@
     padding: 6px 12px;
     border: 1px solid #cfcfcf;
 }
-.welcome-container .pseudo-submit {
-    cursor: pointer;
-    margin-top: 15px;
-    padding: 10px 30px;
-    border-radius: 6px;
-    border: none;
-    background-color: #6565dd;
-    color: white;
-}

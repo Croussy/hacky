@@ -26,7 +26,7 @@ const Welcome = ({game, player}) => {
                        value={pseudo}
                        onChange={e => setPseudo(e.target.value)}
                        placeholder={'Entrez votre pseudo'}/>
-                <button className={'pseudo-submit'} onClick={handleClick}>Commencer</button>
+                <button className={'next-button pseudo-submit'} onClick={handleClick}>Commencer</button>
             </div>
         </div>
     );

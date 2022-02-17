@@ -6,7 +6,7 @@ const MissionIntro = ({mission, handleClick}) => {
             <div className={'mission-intro-content'}>
                 <div className={'mission-name'}>{mission.name}</div>
                 <div className={'mission-description'}>{mission.description}</div>
-                <button className={'button-next'} onClick={handleClick}>Prêt !</button>
+                <button className={'next-button'} onClick={handleClick}>Prêt !</button>
             </div>
         </div>
     );

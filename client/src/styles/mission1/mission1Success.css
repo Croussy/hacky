@@ -12,3 +12,7 @@
     font-size: 1.4rem;
     margin-top: 10px;
 }
+
+.mission1-success-container .next-button.show-explanation {
+    margin-top: 30px;
+}

@@ -5,10 +5,9 @@ const request = supertest(app)
 const {MONGOOSE_ERROR} = require('../server/utils/mongoose-error-service')
 const {GAME_ERROR_VALIDATION_MESSAGE, Game} = require('../server/models/Game.model')
 const {dbConnect, dbClose} = require("../server/config/db-manager");
-const mongoose = require("mongoose");
 
 describe("API Game create", () => {
-    before( 'Game create : connect', () => {
+    before('Game create : connect', () => {
         return dbConnect(process.env.DATABASE_TEST)
     })
     before("Game create : Remove Game collection", () => {
@@ -61,14 +60,19 @@ describe("API Game create", () => {
     })
 })
 describe("API : Get game", () => {
-    before((done) => {
-        dbConnect(process.env.DATABASE_TEST).then(() => {
-            mongoose.connection.collections.games.drop(() => {
-                const game = new Game({name: "hacky 2"})
-                game.save().then(() => {
-                    done();
-                })
-            })
+    before('Get game : connect', () => {
+        return dbConnect(process.env.DATABASE_TEST)
+    })
+    before("Get game : Remove game collection", () => {
+        return Game.deleteMany({})
+    })
+    before("Get game : Remove game collection", () => {
+        return Game.deleteMany({})
+    })
+    before("Get game : Create game mock", (done) => {
+        const game = new Game({name: "hacky 2"})
+        game.save().then(() => {
+            done();
         })
     })
     after(() => {

@@ -23,35 +23,19 @@ module.exports.createOrGetPlayer = async (req, res) => {
         return
     }
 
-    let player = await findPlayerByName(data.pseudo)
+    const player = await findPlayerByName(data.pseudo)
     if (player) {
         res.status(200).send(prepareDataToSend(player, data.gameId))
         return
     }
 
-    const dataNewPlayer = {
-        name: data.pseudo,
-        scores: [
-            {
-                gameId: data.gameId,
-                step: 2,
-                globalScore: 0,
-                missionsAchieved: []
-            }
-        ]
+    const resNewPlayer = await createPlayer(data.pseudo, data.gameId)
+    if (resNewPlayer.message) {
+        res.status(400).send(resNewPlayer)
+        return
     }
 
-    player = new Player(dataNewPlayer)
-    player.save((err, response) => {
-        if (err) {
-            res.status(400).send({
-                message: computeErrorsForFront(err)
-            })
-        } else {
-            dataNewPlayer["id"] = response._id
-            res.status(200).send(prepareDataToSend(dataNewPlayer, data.gameId))
-        }
-    })
+    res.status(200).send(prepareDataToSend(resNewPlayer, data.gameId))
 }
 module.exports.getPlayerById = (req, res) => {
     const id = req.params.id
@@ -65,7 +49,32 @@ module.exports.getPlayerById = (req, res) => {
         res.status(200).send(player)
     }).catch(() => {
         res.status(500).send({
-            message: "Error retrieving find game by id"
+            message: "Error retrieving find player by id"
+        })
+    })
+}
+module.exports.saveScore = (req, res) => {
+    const id = req.params.id
+    if (!id) {
+        res.status(400).send({
+            message: 'No id sent'
+        })
+        return
+    }
+    Player.findById(id).then(player => {
+        player.scores.forEach(score => {
+            if (score.gameId.toString() === req.body.gameId) {
+                score.step = req.body.step
+                score.globalScore = req.body.globalScore
+                score.missionsAchieved = req.body.missionsAchieved
+            }
+        })
+        player.save().then((data) => {
+            res.status(200).send(data)
+        })
+    }).catch(() => {
+        res.status(500).send({
+            message: "Error retrieving find player by id"
         })
     })
 }
@@ -78,10 +87,22 @@ const findPlayerByName = async (name) => {
     })
 }
 const prepareDataToSend = (player, gameId) => {
-    const score = player.scores.find(score => score.gameId === gameId)
+    const score = player.scores.find(score => score.gameId.toString() === gameId)
     return {
-        _id: player._id,
+        id: player._id,
         name: player.name,
-        ...score
+        step: score.step,
+        globalScore: score.globalScore,
+        missionsAchieved: score.missionsAchieved
     }
+}
+const createPlayer = async (pseudo, gameId) => {
+    const player = new Player({name: pseudo})
+    player.scores.push({gameId: gameId})
+
+    return await player.save().then((data) => {
+        return data
+    }).catch(err => {
+        return {message: computeErrorsForFront(err)}
+    })
 }

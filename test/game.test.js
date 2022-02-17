@@ -8,14 +8,16 @@ const {dbConnect, dbClose} = require("../server/config/db-manager");
 const mongoose = require("mongoose");
 
 describe("API Game create", () => {
-    before((done) => {
-        dbConnect(process.env.DATABASE_TEST).then(() => {
-            mongoose.connection.collections.games.drop(() => {
-                const game = new Game({name: "hacky already exist"})
-                game.save().then(() => {
-                    done();
-                })
-            })
+    before( 'Game create : connect', () => {
+        return dbConnect(process.env.DATABASE_TEST)
+    })
+    before("Game create : Remove Game collection", () => {
+        return Game.deleteMany({})
+    })
+    before("Game create : Create Game mock", (done) => {
+        const new_game = new Game({name: "hackyAlreadyExist"})
+        new_game.save().then(() => {
+            done()
         })
     })
     after(() => {
@@ -47,7 +49,7 @@ describe("API Game create", () => {
     })
     it("Should return a response 400 and a game has already this name", (done) => {
         request.post('/api/game/')
-            .send({name: 'hacky already exist'})
+            .send({name: 'hackyAlreadyExist'})
             .expect(400)
             .end((err, res) => {
                 if (err) throw err

@@ -80,6 +80,7 @@ const findPlayerByName = async (name) => {
 const prepareDataToSend = (player, gameId) => {
     const score = player.scores.find(score => score.gameId === gameId)
     return {
+        _id: player._id,
         name: player.name,
         ...score
     }

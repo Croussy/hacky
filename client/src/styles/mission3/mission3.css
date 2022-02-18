@@ -1,0 +1,20 @@
+.mission3-explanation {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 20px;
+}
+.mission3-explanation .title {
+    align-self: center;
+    font-size: 2rem;
+}
+.mission3-explanation .subtitle {
+    align-self: center;
+    font-size: 1.5rem;
+}
+.mission3-explanation .text {
+    margin-top: 20px;
+}
+.mission3-explanation .next-button {
+    align-self: center;
+    width: 200px;
+}

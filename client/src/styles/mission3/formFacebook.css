@@ -1,0 +1,52 @@
+.form-facebook-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.form-facebook-container .logo-facebook {
+    height: 100px;
+}
+.form-facebook-container .form-facebook {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.input-facebook-wrapper {
+    display: inline-block;
+    padding: 6px 0;
+}
+.form-facebook-container .form-facebook .facebook-input {
+    border-radius: 6px;
+    background-color: #fff;
+    border: 1px solid #dddfe2;
+    padding: 14px 16px;
+    width: 330px;
+    font-size: 17px;
+    color: #1d2129;
+    height: 22px;
+    line-height: 16px;
+    vertical-align: middle;
+    margin: 0;
+    outline: none;
+}
+.form-facebook-container .form-facebook .password-forget-label {
+    margin-top: 16px;
+    color: #1877f2;
+    align-self: center;
+    cursor: pointer;
+}
+.form-facebook-container .form-facebook .submit-facebook-form {
+    background-color: #166fe5;
+    border-radius: 6px;
+    font-size: 20px;
+    padding: 0 16px;
+    width: 332px;
+    line-height: 48px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-top: 6px;
+}

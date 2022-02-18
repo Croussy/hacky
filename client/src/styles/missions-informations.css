@@ -1,7 +1,7 @@
 .missions-informations {
     width: 16%;
     display: flex;
-    padding: 0 10px;
+    padding: 0 15px;
     flex-direction: column;
 }
 

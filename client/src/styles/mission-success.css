@@ -1,18 +1,18 @@
-.mission1-success-container {
+.mission-success-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.mission1-success-container .title {
+.mission-success-container .title {
     font-size: 2rem;
     color: green;
     font-weight: 500;
 }
-.mission1-success-container .subtitle {
+.mission-success-container .subtitle {
     font-size: 1.4rem;
     margin-top: 10px;
 }
 
-.mission1-success-container .next-button.show-explanation {
+.mission-success-container .next-button {
     margin-top: 30px;
 }

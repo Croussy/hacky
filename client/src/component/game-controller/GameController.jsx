@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import "../../styles/game-controller.css"
+import "../../styles/mission-success.css"
 import GameInformation from "./GameInformation";
 import MissionContainer from "./MissionContainer";
 import MissionsInformations from "./MissionsInformations";
@@ -22,6 +23,7 @@ const GameController = () => {
     }, [game])
 
     const handleClickForNextMission = () => {
+
         const dataPlayer = {
             ...player,
             step: player.step + 1

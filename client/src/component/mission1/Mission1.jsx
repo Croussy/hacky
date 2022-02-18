@@ -1,29 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React, {useState} from 'react';
+import {useDispatch} from "react-redux";
 import '../../styles/mission1/mission1.css'
 import Mission1Content from "./Mission1Content";
 import Mission1Success from "./Mission1Success";
 import Mission1Explanation from "./Mission1Explanation";
-import Mission1Rules from "./Mission1Rules";
 import {addMissionAchieved, addScoreToPlayer, removeScoreToPlayer} from "../../actions/player.actions";
+import MissionHOC from "../../hoc/MissionHOC";
+import MissionIntro from "../mission-common/MissionIntro";
 
-const Mission1 = ({missionID, handleClickForNextMission}) => {
-    const [stepMission, setStepMission] = useState(1)
-    const [mission, setMission] = useState({})
-    const missions = useSelector(state => state.missionReducer)
+const Mission1 = ({mission, stepMission, handleSetStepMission, handleClickForNextMission}) => {
     const [userPassword, setUserPassword] = useState('')
     const [isUserPasswordInvalid, setIsUserPasswordInvalid] = useState(false)
     const dispatch = useDispatch()
 
-
-    useEffect(() => {
-        const mission_tmp = missions.find(mission => mission._id === missionID)
-        setMission(mission_tmp)
-    }, [missionID])
-
     const handleClickNext = () => {
         const new_steps = stepMission + 1
-        setStepMission(new_steps)
+        handleSetStepMission(new_steps)
         switch (new_steps) {
             case 2:
                 dispatch(addScoreToPlayer(5000))
@@ -41,15 +33,17 @@ const Mission1 = ({missionID, handleClickForNextMission}) => {
         } else {
             dispatch(addMissionAchieved(mission._id))
             setIsUserPasswordInvalid(false)
-            setStepMission(3)
+            handleSetStepMission(3)
         }
     }
 
     let displayedComponent = ''
-    const pseudoVictim = mission.specificData && mission.specificData.dataFakeSocialNetwork.firstName
+    const pseudoVictim = mission && mission.specificData && mission.specificData.dataFakeSocialNetwork.firstName
+    const rules = <p>5 000 points vont vous être attribués dès le départ de la mission. À chaque tentative ratée, vous
+        perdrez des points -250 points. (score min 500 pts)</p>
     switch (stepMission) {
         case 1:
-            displayedComponent = <Mission1Rules mission={mission} handleClick={handleClickNext}/>
+            displayedComponent = <MissionIntro missionRules={rules} mission={mission} handleClick={handleClickNext}/>
             break
         case 2:
             displayedComponent = <Mission1Content userPassword={userPassword}
@@ -73,4 +67,5 @@ const Mission1 = ({missionID, handleClickForNextMission}) => {
     );
 };
 
-export default Mission1;
+const WrappedComponent = MissionHOC(Mission1)
+export default WrappedComponent;

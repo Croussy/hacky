@@ -1,0 +1,95 @@
+.mission-quizz-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.mission-quizz {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mission-quizz-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+.mission-quizz-question-container {
+    width: 70%;
+}
+.mission-quizz-length {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.mission-quizz-question {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #9f7bff;
+    border-radius: 5px;
+    text-align: center;
+}
+.mission-quizz-answers {
+    width: 60%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mission-quizz-answer {
+    width: 100%;
+    text-align: left;
+    padding: 10px 10px 10px 30px;
+    border: #9F7BFF 1px solid;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.mission-quizz-answer:hover {
+    background-color: #9F7BFF;
+    color: white;
+}
+.mission-quizz-answer.success {
+    background-color: green;
+    border: 1px solid green;
+    color: white;
+}
+.mission-quizz-answer.failed {
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+}
+.mission-quizz-explanation-container  {
+    min-height: 80px;
+    width: 100%;
+    opacity: 0;
+    padding: 20px;
+    border: 1px solid #9F7BFF;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+.mission-quizz-explanation-container.displayed  {
+    opacity: 1;
+}
+.mission-quizz-explanation-container .label-state-answer {
+    font-weight: 600;
+}
+.mission-quizz-explanation-container[data-correct-answer="true"] .label-state-answer {
+    color: green;
+}
+.mission-quizz-explanation-container[data-correct-answer="false"] .label-state-answer {
+    color: red;
+}
+.mission-quizz-explanation-container .content {
+    margin-top: 10px;
+}
+
+.btn-next-question-container {
+    height: 50px;
+}
+

@@ -1,4 +1,10 @@
-import {ADD_SCORE, CREATE_OR_GET_PLAYER, ADD_MISSION_ACHIEVED, REMOVE_SCORE} from "../actions/player.actions";
+import {
+    ADD_SCORE,
+    CREATE_OR_GET_PLAYER,
+    ADD_MISSION_ACHIEVED,
+    REMOVE_SCORE,
+    SAVE_PLAYER
+} from "../actions/player.actions";
 
 const initialState = {
     name: '',
@@ -29,6 +35,9 @@ export default (state = initialState, action) => {
             const data = {...state}
             data.missionsAchieved.push(action.payload)
             return data
+
+        case SAVE_PLAYER:
+            return action.payload
     }
     return state
 }

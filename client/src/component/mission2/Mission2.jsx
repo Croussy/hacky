@@ -39,7 +39,7 @@ const Mission2 = ({mission, stepMission, handleSetStepMission, handleClickForNex
         case 3:
             displayedComponent = <Mission2Success nbCorrectAnswer={nbCorrectAnswer}
                                                   total={mission.specificData.questions.length}
-                                                  handleclick={handleClickForNextMission}/>
+                                                  handleClick={handleClickForNextMission}/>
             break
 
     }

@@ -18,9 +18,6 @@ const MissionContainer = ({player, game, handleClickForNextMission}) => {
         case 3:
             missionDisplayed = <Mission2 missionID={game.missions[1]} handleClickForNextMission={handleClickForNextMission}/>
             break
-        case 4:
-            missionDisplayed = <Mission2 missionID={game.missions[1]} handleClickForNextMission={handleClickForNextMission}/>
-            break
     }
 
     return (

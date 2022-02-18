@@ -1,14 +1,16 @@
 .missions-informations {
     width: 16%;
     display: flex;
-    padding: 0 10px;
+    padding: 0 15px;
     flex-direction: column;
 }
 
 .missions-informations .title {
     align-self: center;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 20px;
+    font-weight: 600;
+    color: #636cff;
 }
 .missions-informations .mission-list {
     display: flex;

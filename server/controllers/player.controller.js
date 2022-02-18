@@ -70,7 +70,7 @@ module.exports.saveScore = (req, res) => {
             }
         })
         player.save().then((data) => {
-            res.status(200).send(data)
+            res.status(200).send(prepareDataToSend(data, req.body.gameId))
         })
     }).catch(() => {
         res.status(500).send({

@@ -76,8 +76,6 @@ describe("API Player create", () => {
                 if (err) throw err
                 const data = res.body
                 assert.equal(data.name, 'playerAlreadyExist');
-                console.log("clément", "[data]", data);
-
                 assert.equal(data.id, playedAlreadyExistId);
                 done()
             })
@@ -167,9 +165,8 @@ describe("API : Save score", () => {
             .end((err, res) => {
                 if (err) throw err
                 assert.equal(res.body.name, "TestPlayerSaveScore");
-                assert.equal(res.body.scores.length, 1);
-                assert.equal(res.body.scores[0].step, 4);
-                assert.equal(res.body.scores[0].globalScore, 4750);
+                assert.equal(res.body.step, 4);
+                assert.equal(res.body.globalScore, 4750);
                 done()
             })
     })

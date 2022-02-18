@@ -3,12 +3,20 @@
     display: flex;
     flex-direction: column;
     padding: 0 15px;
+    position: relative;
 }
 
 .game-information .logo {
     align-self: center;
     margin-bottom: 30px;
     font-size: 2rem;
+    position: absolute;
+    top: -244px;
+    left: 10px;
+}
+.game-information .logo img {
+    height: 300px;
+    width: 300px;
 }
 
 .game-information .restart-game-button {
@@ -20,8 +28,9 @@
     display: flex;
     justify-content: space-between;
     padding: 24px 20px;
-    background-color: #2d1837;
+    background-color: #636cff;
     align-items: center;
+    border-radius: 7px;
     color: white;
     margin: 5px;
     flex-wrap: wrap;

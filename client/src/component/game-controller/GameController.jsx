@@ -5,7 +5,7 @@ import GameInformation from "./GameInformation";
 import MissionContainer from "./MissionContainer";
 import MissionsInformations from "./MissionsInformations";
 import {useDispatch, useSelector} from "react-redux";
-import {getInfoGame} from "../../actions/game.action";
+import {addCurrentMissionId, getInfoGame} from "../../actions/game.action";
 import {getMissions} from "../../actions/missions.action";
 import {savePlayer} from "../../actions/player.actions";
 import EndComponent from "../end-component";
@@ -22,6 +22,17 @@ const GameController = () => {
             dispatch(getMissions(game._id))
         }
     }, [game])
+    useEffect(() => {
+        switch (player.step) {
+            case 2:
+                dispatch(addCurrentMissionId(game.missions[0]))
+                break
+            case 3:
+                dispatch(addCurrentMissionId(game.missions[1]))
+                break
+        }
+
+    }, [player.step])
 
     const handleClickForNextMission = () => {
         const dataPlayer = {
@@ -41,12 +52,12 @@ const GameController = () => {
                     <GameInformation player={player}/>
                     <MissionContainer game={game} player={player}
                                       handleClickForNextMission={handleClickForNextMission}/>
-                    <MissionsInformations player={player}/>
+                    <MissionsInformations game={game} player={player}/>
                 </Fragment>
             )
             break
         case 4:
-            gameContent = <EndComponent player={player} />
+            gameContent = <EndComponent player={player}/>
             break
     }
 

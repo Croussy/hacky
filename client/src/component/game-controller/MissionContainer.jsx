@@ -6,7 +6,6 @@ import '../../styles/mission-common.css'
 import Mission2 from "../mission2/Mission2";
 
 const MissionContainer = ({player, game, handleClickForNextMission}) => {
-
     let missionDisplayed = ''
     switch (player.step) {
         case 1:

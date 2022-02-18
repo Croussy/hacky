@@ -7,8 +7,10 @@
 
 .missions-informations .title {
     align-self: center;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 20px;
+    font-weight: 600;
+    color: #636cff;
 }
 .missions-informations .mission-list {
     display: flex;

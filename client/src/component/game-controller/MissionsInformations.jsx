@@ -3,12 +3,13 @@ import '../../styles/missions-informations.css'
 import MissionInformation from "./MissionInformation";
 import {useSelector} from "react-redux";
 
-const MissionsInformations = ({player}) => {
+const MissionsInformations = ({game, player}) => {
     const missions = useSelector(state => state.missionReducer)
     const missionsHtml = missions.map(mission => {
         const isAchieved = player.missionsAchieved.indexOf(mission._id) !== -1
+        const isActive = game.currentMissionId === mission._id
         return (
-            <MissionInformation key={mission._id} mission={mission} isAchieved={isAchieved}/>
+            <MissionInformation key={mission._id} isActive={isActive} mission={mission} isAchieved={isAchieved}/>
         )
     })
     return (

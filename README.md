@@ -5,7 +5,7 @@ This is a serious game to raise awareness of good IT security practices
 A demo of the game is available [here](https://hacky-the-serious-game.herokuapp.com/).
 Have fun !!
 
-## DEVELOPPEMENT
+## DEVELOPMENT
 ### Install project
 In **this folder**, run :
 `npm install`

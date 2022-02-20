@@ -18,7 +18,7 @@ or
 `yarn`
 
 ### Config project
-### Backend
+#### Backend
 In folder server/config, create `.env` file, with configuration like that :
 ```
 PORT=
@@ -37,7 +37,7 @@ DATABASE_TEST = The adress of mongo database we using for unit test
 
 CLIENT_URL= The client adress for cors (example : http://localhost:3000)
 
-### Front
+#### Front
 In client folder, add `.env` file with this config
 ```
 VITE_REACT_APP_API_URL=http://localhost:5000
@@ -59,6 +59,12 @@ And in same time, open other terminal and in client folder, run :
 `npm run dev`
 or
 `yarn dev`
+
+### Add data to mongoDB
+In root of project you have Hacky.postman_collection.json, import it in [postman sofware ](https://www.postman.com/)
+
+Launch the server, then launch the game request, then the mission1 and mission2 requests
+
 
 ## PRODUCTION
 ### Build interface

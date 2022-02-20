@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Mission3Explanation = ({isSuccess = false, title, subTitle, text, handleClick}) => {
-    const disclaimerMessage = !isSuccess ? "Aucune inquietude vos identifiants Facebook n'ont pas été sauvegardés" : ''
+    const disclaimerMessage = !isSuccess ? "Aucune inquiétude vos identifiants Facebook n'ont pas été sauvegardés" : ''
     return (
         <div className={'mission3-explanation'}>
             <div className={'title'} style={{'color': isSuccess ? 'green': 'red'}}>{title}</div>

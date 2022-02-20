@@ -23,7 +23,7 @@ const Mission3 = ({showPopup, handleClose}) => {
             break
         case 2:
             contentPopup = <Mission3Explanation isSuccess={true} title={'Bien joué !'}
-                                                subTitle={'Vous avez éviter de justesse à ce piège.'}
+                                                subTitle={'Vous avez évité de justesse à ce piège.'}
                                                 handleClick={handleClose}
                                                 text={textExplanation}/>
             break
